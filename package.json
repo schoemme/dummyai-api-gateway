@@ -1,0 +1,9 @@
+{
+  "name": "dummyai-api-gateway",
+  "version": "1.5.0",
+  "scripts": { "build": "tsc", "start": "node dist/index.js", "test": "jest" },
+  "dependencies": {
+    "express": "^4.18.2",
+    "dummyai-shared-types": "^2.1.0"
+  }
+}
