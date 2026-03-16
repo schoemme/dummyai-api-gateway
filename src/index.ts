@@ -1,5 +1,5 @@
 import express from 'express';
-import { Model, InferenceRequest, InferenceResponse } from 'dummyai-shared-types';
+import { Model, InferenceRequest, InferenceResponse, ModelStatus } from 'dummyai-shared-types';
 
 const app = express();
 app.use(express.json());
@@ -23,7 +23,16 @@ app.post('/models/:id/infer', (req, res) => {
   res.json(response);
 });
 
-// TODO: GET /models/:id/status endpoint needed
+app.get('/models/:id/status', (req, res) => {
+  const { id } = req.params;
+  const status: ModelStatus = {
+    modelId: id,
+    status: 'training',
+    progress: 42,
+    lastUpdated: new Date().toISOString(),
+  };
+  res.json(status);
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`API Gateway on port ${PORT}`));
